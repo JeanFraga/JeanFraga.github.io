@@ -1,7 +1,7 @@
 # --- Basic options --- #
 
 # Name of website
-title: My
+title: Data Science
 
 # Short description of your site
 description: Passionate about Business and Psychology, looking to solve problems for both with data science
@@ -44,14 +44,14 @@ social-network-links:
   # twitter: daattali
   rss: true
 #  reddit: yourname
- linkedin: jeanfraga
+  linkedin: jeanfraga
 #  xing: yourname
 #  stackoverflow: "3943160/daattali"
 #  snapchat: deanat78
 #  instagram: deanat78
 #  youtube: user/deanat78
 #  spotify: yourname
- telephone: +17862536965
+  telephone: +17862536965
 #  steam: deanat78
 #  twitch: yourname
 #  yelp: yourname
