@@ -1,13 +1,13 @@
 ---
 layout: page
-title: About me
-subtitle: Why you'd want to go on a date with me
+title: My Journey though Data Science
+subtitle: My passion for business and psychology brought me here, now I teach computers.
 ---
 
-My name is Inigo Montoya. I have the following qualities:
+My name is Jean Fraga. I have the following qualities:
 
-- I rock a great mustache
-- I'm extremely loyal to my family
+- I love to learn about everything.
+- I always ask questions
 
 What else do you need?
 
