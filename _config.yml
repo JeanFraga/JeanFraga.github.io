@@ -4,10 +4,10 @@
 title: Jean Fraga Data Science
 
 # Short description of your site
-description: Passionate about Business and Psychology, I have experience in management and client relations. I look forward to growing in this exciting area of Machine Learning and Data Science.
+description: Passionate about Business and Psychology, looking to solve problems for both with data science
 
 # Your name to show in the footer
-author: Some Person
+author: Jean Fraga
 
 # --- List of links in the navigation bar --- #
 
@@ -62,8 +62,8 @@ social-network-links:
 
 # Select which social network share links to show in posts
 share-links-active:
-  twitter: false
-  facebook: false
+  twitter: true
+  facebook: true
   linkedin: true
 
 # How to display the link to your website in the footer
