@@ -2,7 +2,7 @@
 layout: post
 title: Restaurant Consumer Data
 subtitle: My First Data Storytelling Project DS8
-bigimg: /assets/jimg/restaurant_picture.jpeg
+cover-img: /assets/jimg/restaurant_picture.jpeg
 ---
 
 My project revolves around the data gathered from 130 restaurants and subsequently the rating those received from 138 users. 
