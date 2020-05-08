@@ -18,9 +18,93 @@ Enjoy!
 
 ## The data I used to make the model
 
-![Data](https://raw.githubusercontent.com/JeanFraga/JeanFraga.github.io/master/assets/jimg/dataframe_table.png){: .center-block :}
+![Data](https://raw.githubusercontent.com/JeanFraga/JeanFraga.github.io/master/assets/jimg/dataframe_table.png | width=100){: .center-block :}
 
-This dataset comes from [kaggle](https://www.kaggle.com/kingburrito666/cannabis-strains) and was kindly provided by [leafly](leafly.com).
+This dataset comes from [kaggle](https://www.kaggle.com/kingburrito666/cannabis-strains), kindly provided by [leafly](leafly.com).
 
 It contains 2350 unique strains with their corresponding type(Hybrid, Indica, Sativa), rating(0.0-5.0 by users), Effects(Uplifted, Happy, Relaxed, etc.), taste(of smoke), and a description(brief, about the plants background).
 
+## Preprocessing the dataframe
+
+### We first begin by replacing the 'NaN' values with 'None'
+```
+df = df.fillna('None')
+```
+
+### Then proceed to make a 'bag of words' from all the rows
+```
+df['bag_of_words'] = df['Strain']+" "+df["Effects"] +" "+ df["Flavor"] +" "+ df['Description'] +" "+ df['Type']
+```
+
+### We continue by making this column in the data frame into tokens
+```
+tokens = []
+
+""" Make them tokens """
+for doc in tokenizer.pipe(df['bag_of_words'], batch_size=500):
+    doc_tokens = [token.text for token in doc]
+    tokens.append(doc_tokens)
+
+df['tokens'] = tokens
+```
+
+## Making the model
+#### We first need to vectorize and incidentally remove the stop words as well
+```
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+# Instantiate vectorizer object
+tfidf = TfidfVectorizer(stop_words='english')
+
+# Create a vocabulary and get word counts per document
+#Similar to fit_predict
+dtm = tfidf.fit_transform(df['bag_of_words'])
+
+# Print word counts
+
+# Get feature names to use as dataframe column headers
+dtm = pd.DataFrame(dtm.todense(), columns=tfidf.get_feature_names())
+
+# View Feature Matrix as DataFrame
+dtm.head()
+```
+### Create the nearest neighbors model
+```
+# Instantiate
+from sklearn.neighbors import NearestNeighbors
+from sklearn.feature_extraction.text import TfidfVectorizer
+
+
+# Fit on TF-IDF Vectors
+nn  = NearestNeighbors(n_neighbors=5, algorithm='kd_tree')
+nn.fit(dtm)
+```
+
+## Predict Function
+
+Now that we have the model created and pickled we can make a function that we can use in our predict file.
+```
+def recommend(text):
+   # Transform
+    text = pd.Series(text)
+    vect = tfidf.transform(text)
+
+    # Send to df
+    vectdf = pd.DataFrame(vect.todense())
+    
+
+    # Return a list of indexes
+    top5 = nn.kneighbors([vectdf][0], n_neighbors=5)[1][0].tolist()
+   
+    
+    # Send recomendations to DataFrame
+    recommendations_df = df.iloc[top5]
+    recommendations_df['index']= recommendations_df.index
+    
+    return recommendations_df
+```
+
+### Please refer to the notebook if you need more information
+[Model_Notebook](https://github.com/JeanFraga/Cannabis-API-2/blob/master/CANNABIS_API/models/testing_model.ipynb)
+___
+# ***Flask
