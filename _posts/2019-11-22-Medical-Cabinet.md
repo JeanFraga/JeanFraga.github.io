@@ -116,6 +116,7 @@ def recommend(text):
 ##### Please refer to the notebook if you need more information
 
 [Model_Notebook](https://github.com/JeanFraga/Cannabis-API-2/blob/master/CANNABIS_API/models/testing_model.ipynb)
+
 ___
 
 # Flask
