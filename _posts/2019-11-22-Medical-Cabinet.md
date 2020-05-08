@@ -22,7 +22,7 @@ Enjoy!
 
 ![Data](https://raw.githubusercontent.com/JeanFraga/JeanFraga.github.io/master/assets/jimg/dataframe_table.png){: .center-block :}
 
-This dataset comes from [kaggle](https://www.kaggle.com/kingburrito666/cannabis-strains), kindly provided by [leafly](leafly.com).
+This dataset comes from [kaggle](https://www.kaggle.com/kingburrito666/cannabis-strains), kindly provided by [leafly](https://www.leafly.com/).
 
 It contains 2350 unique strains with their corresponding type(Hybrid, Indica, Sativa), rating(0.0-5.0 by users), Effects(Uplifted, Happy, Relaxed, etc.), taste(of smoke), and a description(brief, about the plants background).
 
@@ -30,17 +30,20 @@ It contains 2350 unique strains with their corresponding type(Hybrid, Indica, Sa
 
 ##### We first begin by replacing the 'NaN' values with 'None'
 
+
 ```
 df = df.fillna('None')
 ```
 
 ##### Then proceed to make a 'bag of words' from all the rows
 
+
 ```
 df['bag_of_words'] = df['Strain']+" "+df["Effects"] +" "+ df["Flavor"] +" "+ df['Description'] +" "+ df['Type']
 ```
 
 ##### We continue by making this column in the data frame into tokens
+
 
 ```
 tokens = []
@@ -56,6 +59,7 @@ df['tokens'] = tokens
 # Making the model
 
 ##### We first need to vectorize and incidentally remove the stop words as well
+
 
 ```
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -78,6 +82,7 @@ dtm.head()
 
 ##### Create the nearest neighbors model
 
+
 ```
 # Instantiate
 from sklearn.neighbors import NearestNeighbors
@@ -92,6 +97,8 @@ nn.fit(dtm)
 ##### Predict Function
 
 Now that we have the model created and pickled we can make a function that we can use in our predict file.
+
+
 ```
 def recommend(text):
    # Transform
@@ -112,6 +119,7 @@ def recommend(text):
     
     return recommendations_df
 ```
+
 
 ##### Please refer to the notebook if you need more information
 
