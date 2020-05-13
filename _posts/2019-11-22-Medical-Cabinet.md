@@ -127,4 +127,15 @@ def recommend(text):
 
 ___
 
-# Flask
+The packages I used for this app are:
+```
+flask
+python-dotenv
+python-decouple
+gunicorn
+pandas
+sklearn
+numpy
+joblib
+spacy
+```
