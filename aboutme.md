@@ -1,6 +1,6 @@
 ---
 layout: page
-title: My Journey though Data Science
+title: My Journey through Data Science
 subtitle: My passion for business and psychology brought me here, now I teach computers.
 ---
 
