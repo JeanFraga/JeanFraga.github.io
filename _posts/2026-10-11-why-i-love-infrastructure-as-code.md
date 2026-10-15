@@ -17,7 +17,7 @@ In [Agentic Data Science]({% post_url 2025-05-31-agentic-data-science %}) (May 2
 
 ## Lesson 2: state is sacred, and each environment needs its own
 
-Terraform state is Terraform's record of what it has already created. In [Agentic Data Governance]({% post_url 2025-06-26-agentic-data-governance %}) (June 2025), I merged my local and production Terraform folders into one configuration. A local dry run then **planned to destroy production**, because both environments were reading the same state.
+Terraform state is Terraform's record of what it has already created. In [Agentic Data Governance]({% post_url 2025-06-26-agentic-data-governance %}) (June 2025), I combined my local and production Terraform folders into one configuration, and both environments ended up reading the **same state**. With shared state, a plan run for one environment can propose changes to the other, so I split them: each environment now has its own state.
 
 Since then:
 

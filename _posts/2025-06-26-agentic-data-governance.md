@@ -61,7 +61,7 @@ On every push to `main`, CI signs in to GCP **keylessly via WIF**, builds and pu
 - **CPU quota on a new project.** Autopilot scale-up failed with `QUOTA_EXCEEDED`: installing ingress-nginx and cert-manager next to an oversized pod went past a new project's default regional CPU quota. I added resource limits to the chart and a quota-limited values file (about 0.6 vCPU across the three containers), plus a helper for requesting a quota increase.
 - **OAuth redirect mismatches.** OpenWebUI's generic OIDC provider uses the `/oauth/oidc/callback` path, not a Google-specific one. A small diagnostic script for `redirect_uri` errors saved me hours.
 - **DNS before TLS.** Let's Encrypt needs a real hostname. Before buying a domain I used nip.io hostnames, and the final setup supports a Terraform-managed zone, external DNS, or IP-only.
-- **Separate state per environment.** When I merged my local and production Terraform trees, a local dry run planned to *destroy production*. That's how I learned to give every environment its own state.
+- **Separate state per environment.** Combining my local and production Terraform trees meant both environments read the same state, so a plan for one could propose changes to the other. I split them so every environment has its own state.
 
 ## Status and what I'd do next
 
